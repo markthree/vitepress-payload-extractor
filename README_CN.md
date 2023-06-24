@@ -12,12 +12,12 @@
 
 ## Motivation
 
-我们团队在使用 [vitepress](https://github.com/vuejs/vitepress)
+我们团队正在使用 [vitepress](https://github.com/vuejs/vitepress)
 来构建大型项目文档，但随着文档数量越来越多，html 页面的元信息 payload
 也变得超大，所以我做了这个工具，它可以提取页面重复的 payload，减少包的体积。
 
 通过它，我们团队生产环境下的文档从 `255MB` 降到了 `94.4MB`， 体积是原来的
-`37%`。如果你也遇到了
+`37%`。如果你也遇到了同样的窘境，也许你可以试试这个工具!
 
 <br />
 

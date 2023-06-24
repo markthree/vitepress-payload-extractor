@@ -12,14 +12,14 @@ Extracting duplicate payloads of meta information after vitepress wrapping
 
 ## Motivation
 
-Our team was using vitepress to build large project documents, but as the number
-of documents grew, the meta-information payload of html pages became oversized,
-so I made this tool which extracts the duplicate payload of pages and reduces
-the size of the package.
+Our team was using [vitepress](https://github.com/vuejs/vitepress) to build
+large project documents, but as the number of documents grew, the meta
+information payload of html pages became oversized, so I made this tool that
+extracts the duplicate payload of pages and reduces the size of the package.
 
-With it, the documents in our team's production environment went from `255MB` to
-`94.4MB`, which is `37%` of the original size. If you have encountered the same
-problem, you are welcome to try it out!
+With it, our team's production documents went from `255MB` to `94.4MB`, which is
+`37%` of the original size. If you are in the same dilemma, maybe you can try
+this tool!
 
 <br />
 
@@ -33,8 +33,7 @@ npm i vitepress-payload-extractor -D
 
 ### Configuration
 
-Introduce the package in your `vitepress` configuration file and use the
-`buildEnd` hook in the
+Introduce the package in your `vitepress` configuration file
 
 ```ts
 // .vitepress/config.js
