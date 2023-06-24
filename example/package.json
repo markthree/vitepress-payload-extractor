@@ -1,0 +1,12 @@
+{
+  "name": "vitepress-demo",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "1.0.0-beta.3",
+    "vitepress-payload-extractor": "workspace:*"
+  }
+}

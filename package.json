@@ -1,7 +1,7 @@
 {
   "version": "0.0.0",
-  "name": "name",
-  "description": "description",
+  "name": "vitepress-payload-extractor",
+  "description": "Extracting duplicate payloads of meta information after vitepress wrapping | 提取 vitepress 打包后重复的有效元信息载荷",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -20,49 +20,33 @@
     "dist"
   ],
   "scripts": {
-    "test": "vitest",
     "build": "unbuild",
-    "build:deno": "udeno",
-    "build:esm": "mkdist -d",
-    "dev": "pnpm build:stub",
-    "play": "tsx src/index.ts",
-    "prepare": "husky install",
-    "test:watch": "vitest --watch",
-    "coverage": "vitest --coverage",
+    "dev": "unbuild --stub",
     "prepublishOnly": "pnpm build",
-    "build:stub": "pnpm build --stub",
-    "build:cjs": "mkdist -d --format=cjs",
-    "deps:fresh:major": "npx taze major -w",
-    "deps:fresh:minor": "npx taze minor -w",
-    "deps:fresh:patch": "npx taze patch -w",
+    "example:dev": "pnpm -C example dev",
+    "example:build": "pnpm -C example build",
     "release": "bumpp --commit --push --tag && npm publish"
   },
   "keywords": [
-    "lib",
-    "tool",
-    "node",
-    "utils"
+    "payload",
+    "extractor",
+    "vitepress",
+    "optimization"
   ],
   "author": {
-    "name": "name",
-    "email": "xx@xx.com",
-    "url": "https://github.com/name"
+    "name": "markthree",
+    "email": "1801982702@qq.com",
+    "url": "https://github.com/markthree"
   },
   "bugs": {
-    "email": "xx@xx.com",
-    "url": "https://github.com/name/repo/issues"
+    "email": "1801982702@qq.com",
+    "url": "https://github.com/markthree/vitepress-payload-extractor/issues"
   },
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^18.15.11",
-    "bumpp": "^9.1.0",
-    "c8": "^7.13.0",
-    "husky": "^8.0.3",
-    "mkdist": "^1.2.0",
-    "tsx": "^3.12.6",
-    "typescript": "^5.0.3",
-    "udeno": "^0.3.6",
-    "unbuild": "^1.2.0",
-    "vitest": "^0.29.8"
+    "@types/node": "^18.16.18",
+    "bumpp": "^9.1.1",
+    "typescript": "^5.1.3",
+    "unbuild": "^1.2.1"
   }
 }
