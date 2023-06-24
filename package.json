@@ -1,5 +1,5 @@
 {
-  "version": "0.0.0",
+  "version": "0.0.1",
   "name": "vitepress-payload-extractor",
   "description": "Extracting duplicate payloads of meta information after vitepress wrapping | 提取 vitepress 打包后重复的有效元信息载荷",
   "main": "./dist/index.cjs",
@@ -25,6 +25,7 @@
     "prepublishOnly": "pnpm build",
     "example:dev": "pnpm -C example dev",
     "example:build": "pnpm -C example build",
+    "example:preview": "pnpm -C example preview",
     "release": "bumpp --commit --push --tag && npm publish"
   },
   "keywords": [
@@ -48,5 +49,9 @@
     "bumpp": "^9.1.1",
     "typescript": "^5.1.3",
     "unbuild": "^1.2.1"
+  },
+  "dependencies": {
+    "fast-glob": "^3.2.12",
+    "ohash": "^1.1.2"
   }
 }
