@@ -7,7 +7,7 @@
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/name/repo.git"
+    "url": "git+https://github.com/markthree/vitepress-payload-extractor.git"
   },
   "exports": {
     ".": {
