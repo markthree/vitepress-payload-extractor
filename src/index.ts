@@ -1,57 +1,46 @@
-import fg from "fast-glob";
-import { readFile, writeFile } from "fs/promises";
-import { murmurHash } from "ohash";
 import { join } from "path";
+import { existsSync } from "fs";
+import { murmurHash } from "ohash";
+import { writeFile } from "fs/promises";
+
+/**
+ * Generic regular expressions
+ */
+export const regs = {
+  tail: /<\/body>/,
+  meta: /<script>(__VP_HASH_MAP__[\w\W]*?)<\/script>/,
+};
 
 /**
  * Extracting duplicate payloads of meta information after vitepress wrapping
- * @param {string} outDir vitepress final dist
+ * @param {string} html html text
+ * @param {string} outDir output folder for payload files
+ * @link https://github.com/nuxt/nuxt/issues/14507
  * @example
  * ```ts
- * import { defineConfig } from "vitepress"
- * import { payloadExtraction } from "vitepress-payload-extractor"
+ * import { defineConfig } from "vitepress";
+ * import { payloadExtraction } from "vitepress-payload-extractor";
  *
  * export default defineConfig({
- *   async buildEnd(siteConfig) {
- *      await payloadExtraction(siteConfig.outDir)
- *   }
+ *  transformHtml(code, _, ctx) {
+ *     return payloadExtraction(code, ctx.siteConfig.outDir);
+ *  }
  * })
  * ```
  */
-export async function payloadExtraction(outDir: string) {
-  const htmls = await fg("**/*.html", {
-    cwd: outDir,
-    absolute: true,
-    onlyFiles: true,
-  });
-
-  const html0 = htmls[0];
-
-  const html0Text = await readFile(html0, { encoding: "utf-8" });
-
-  const text = html0Text.match(/<script>(__VP_HASH_MAP__[\w\W]*?)<\/script>/)
-    ?.[0];
-
-  if (text) {
-    // hash 是为了防止 payload 改变，浏览器命中旧缓存
-    // hash is to prevent the payload from changing and the browser from hitting the old cache
-    const payloadFile = `payload_${murmurHash(text)}.js`;
-    const payload = {
-      text,
-      path: join(outDir, payloadFile),
-      scriptText: `<script src="/${payloadFile}"></script>`,
-    };
-    await writeFile(
-      payload.path,
-      payload.text.replace(/<script>([\w\W]*)<\/script>/, "$1"),
-    );
-    await Promise.all(htmls.map(async (path) => {
-      const htmlText = await readFile(path, { encoding: "utf-8" });
-      const newHtmlText = htmlText.replace(
-        payload.text,
-        payload.scriptText,
-      );
-      return writeFile(path, newHtmlText, { encoding: "utf8" });
-    }));
+export function payloadExtraction(html: string, outDir: string) {
+  const metaCode = html.match(regs.meta)?.[0] ?? "";
+  if (!metaCode) {
+    return html;
   }
+  const text = metaCode.replace(regs.meta, "$1");
+  const hash = murmurHash(text);
+  const file = `payload_${hash}.js`;
+  const filePath = join(outDir, file);
+  const script = `<script src="/${file}"></script></body>`;
+
+  if (!existsSync(filePath)) {
+    writeFile(filePath, text); // await is not needed because it is not relevant to the following
+  }
+  return html.replace(metaCode, "").replace(regs.tail, script);
 }

@@ -31,7 +31,7 @@ npm i vitepress-payload-extractor -D
 
 ### Configuration
 
-在你的 `vitepress` 配置文件中引入包，并在 `buildEnd` 钩子中使用
+在你的 `vitepress` 配置文件中引入包
 
 ```ts
 // .vitepress/config.js
@@ -39,8 +39,8 @@ import { defineConfig } from "vitepress";
 import { payloadExtraction } from "vitepress-payload-extractor";
 
 export default defineConfig({
-  async buildEnd(siteConfig) {
-    await payloadExtraction(siteConfig.outDir); // 构建后，将自动提取，无需担心
+  transformHtml(code, _, ctx) {
+    return payloadExtraction(code, ctx.siteConfig.outDir);
   },
 });
 ```

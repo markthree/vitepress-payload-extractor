@@ -41,8 +41,8 @@ import { defineConfig } from "vitepress";
 import { payloadExtraction } from "vitepress-payload-extractor";
 
 export default defineConfig({
-  async buildEnd(siteConfig) {
-    await payloadExtraction(siteConfig.outDir); // After build, it will be extracted automatically, no need to be careful
+  transformHtml(code, _, ctx) {
+    return payloadExtraction(code, ctx.siteConfig.outDir);
   },
 });
 ```

@@ -6,7 +6,6 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "go-get-folder-size": "^0.3.2",
     "vitepress": "1.0.0-beta.3",
     "vitepress-payload-extractor": "workspace:*"
   }
