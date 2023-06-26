@@ -29,7 +29,7 @@ export async function payloadExtraction(outDir: string) {
 
   const html0Text = await readFile(html0, { encoding: "utf-8" });
 
-  const text = html0Text.match(/<script>(__VP_HASH_MAP__[\w\W]*)<\/script>/)
+  const text = html0Text.match(/<script>(__VP_HASH_MAP__[\w\W]*?)<\/script>/)
     ?.[0];
 
   if (text) {
