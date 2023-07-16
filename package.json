@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "name": "vitepress-payload-extractor",
   "description": "Extracting duplicate payloads of meta information after vitepress wrapping | 提取 vitepress 打包后重复的有效元信息载荷",
   "main": "./dist/index.cjs",
