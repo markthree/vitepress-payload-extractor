@@ -35,9 +35,27 @@ npm i vitepress-payload-extractor -D
 
 Introduce the package in your `vitepress` configuration file
 
+#### optimizeHtml
+
+Extract duplicate meta information payloads during `vitepress` packaging and
+compress `html`.
+
+```ts
+import { defineConfig } from "vitepress";
+import { optimizeHtml } from "vitepress-payload-extractor";
+
+export default defineConfig({
+  transformHtml(code) {
+    return optimizeHtml(code);
+  },
+});
+```
+
+---
+
 #### payloadExtraction
 
-在 `vitepress` 打包过程中提取重复的元信息有效载荷
+Extract duplicate meta-message payloads during `vitepress` packaging process
 
 ```ts
 // .vitepress/config.js

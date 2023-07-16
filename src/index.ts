@@ -79,3 +79,24 @@ export function minifyHtml(html: string) {
     collapseInlineTagWhitespace: false,
   });
 }
+
+/**
+ * Extract html payload and compress html
+ * @param {string} html
+ * @param {string} dist
+ * @example
+ * ```ts
+ * import { defineConfig } from "vitepress";
+ * import { optimizeHtml } from "vitepress-payload-extractor";
+ *
+ * export default defineConfig({
+ *  transformHtml(code, _, ctx) {
+ *     return optimizeHtml(code, ctx.siteConfig.outDir);
+ *  }
+ * })
+ * ```
+ */
+export async function optimizeHtml(html: string, dist: string) {
+  // Extract duplicate html payloads first, then html compression
+  return minifyHtml(payloadExtraction(html, dist));
+}

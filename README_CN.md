@@ -33,6 +33,23 @@ npm i vitepress-payload-extractor -D
 
 在你的 `vitepress` 配置文件中引入包
 
+#### optimizeHtml
+
+在 `vitepress` 打包过程中提取重复的元信息有效载荷，并压缩 `html`
+
+```ts
+import { defineConfig } from "vitepress";
+import { optimizeHtml } from "vitepress-payload-extractor";
+
+export default defineConfig({
+  transformHtml(code) {
+    return optimizeHtml(code);
+  },
+});
+```
+
+---
+
 #### payloadExtraction
 
 在 `vitepress` 打包过程中提取重复的元信息有效载荷

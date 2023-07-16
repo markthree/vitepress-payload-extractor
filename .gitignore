@@ -1,4 +1,5 @@
 dist
+temp
+cache
 coverage
-.vitepress
 node_modules
