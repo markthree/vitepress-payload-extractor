@@ -62,7 +62,7 @@ export function payloadExtraction(html: string, outDir: string) {
  * })
  * ```
  */
-export async function minifyHtml(html: string) {
+export function minifyHtml(html: string) {
   return htmlMinifier.minify(html, {
     html5: true,
     minifyJS: true,
