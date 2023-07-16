@@ -2,6 +2,7 @@ import { join } from "path";
 import { existsSync } from "fs";
 import { murmurHash } from "ohash";
 import { writeFile } from "fs/promises";
+import htmlMinifier from "html-minifier";
 
 /**
  * Generic regular expressions
@@ -43,4 +44,38 @@ export function payloadExtraction(html: string, outDir: string) {
     writeFile(filePath, text); // await is not needed because it is not relevant to the following
   }
   return html.replace(metaCode, "").replace(regs.tail, script);
+}
+
+/**
+ * Compresses html and is compatible with vitepress
+ * @param {string} html
+ * @link https://github.com/kangax/html-minifier
+ * @example 
+ * ```ts
+ * import { defineConfig } from "vitepress";
+ * import { minifyHtml } from "vitepress-payload-extractor";
+ *
+ * export default defineConfig({
+ *  transformHtml(code, _, ctx) {
+ *     return minifyHtml(code, ctx.siteConfig.outDir);
+ *  }
+ * })
+ * ```
+ */
+export async function minifyHtml(html: string) {
+  return htmlMinifier.minify(html, {
+    html5: true,
+    minifyJS: true,
+    minifyCSS: true,
+    minifyURLs: true,
+    caseSensitive: true,
+    keepClosingSlash: true,
+    collapseWhitespace: true,
+    trimCustomFragments: true,
+    conservativeCollapse: true,
+    removeAttributeQuotes: true,
+    removeRedundantAttributes: true,
+    collapseBooleanAttributes: true,
+    collapseInlineTagWhitespace: false,
+  });
 }
