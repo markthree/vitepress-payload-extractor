@@ -50,14 +50,14 @@ export function payloadExtraction(html: string, outDir: string) {
  * Compresses html and is compatible with vitepress
  * @param {string} html
  * @link https://github.com/kangax/html-minifier
- * @example 
+ * @example
  * ```ts
  * import { defineConfig } from "vitepress";
  * import { minifyHtml } from "vitepress-payload-extractor";
  *
  * export default defineConfig({
- *  transformHtml(code, _, ctx) {
- *     return minifyHtml(code, ctx.siteConfig.outDir);
+ *  transformHtml(code) {
+ *     return minifyHtml(code);
  *  }
  * })
  * ```
