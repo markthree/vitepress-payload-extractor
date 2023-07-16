@@ -13,7 +13,7 @@ export const regs = {
 };
 
 /**
- * Extracting duplicate payloads of meta information after vitepress wrapping
+ * Extract duplicate meta-message payloads during `vitepress` packaging process
  * @param {string} html html text
  * @param {string} outDir output folder for payload files
  * @link https://github.com/nuxt/nuxt/issues/14507
@@ -47,7 +47,7 @@ export function payloadExtraction(html: string, outDir: string) {
 }
 
 /**
- * Compresses html and is compatible with vitepress
+ * Compresses html and is compatible with `vitepress`
  * @param {string} html
  * @link https://github.com/kangax/html-minifier
  * @example

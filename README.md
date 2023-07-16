@@ -35,6 +35,10 @@ npm i vitepress-payload-extractor -D
 
 Introduce the package in your `vitepress` configuration file
 
+#### payloadExtraction
+
+在 `vitepress` 打包过程中提取重复的元信息有效载荷
+
 ```ts
 // .vitepress/config.js
 import { defineConfig } from "vitepress";
@@ -43,6 +47,23 @@ import { payloadExtraction } from "vitepress-payload-extractor";
 export default defineConfig({
   transformHtml(code, _, ctx) {
     return payloadExtraction(code, ctx.siteConfig.outDir);
+  },
+});
+```
+
+<br />
+
+#### minifyHtml
+
+Compresses html and is compatible with vitepress
+
+```ts
+import { defineConfig } from "vitepress";
+import { minifyHtml } from "vitepress-payload-extractor";
+
+export default defineConfig({
+  transformHtml(code) {
+    return minifyHtml(code);
   },
 });
 ```
