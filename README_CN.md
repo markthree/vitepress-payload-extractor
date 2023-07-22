@@ -4,6 +4,12 @@
 
 <br />
 
+该项目已 `block`，因为 `vitepress` 的
+[1.0.0-beta.6](https://github.com/vuejs/vitepress/pull/2626) 已支持
+[metaChunk](https://github.com/vuejs/vitepress/pull/2626) 选项
+
+<br />
+
 ## README 🦉
 
 简体中文 | [English](./README.md)

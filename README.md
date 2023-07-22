@@ -4,6 +4,12 @@ Extracting duplicate payloads of meta information after vitepress wrapping
 
 <br />
 
+This project has been `blocked`, because the `vitepress`
+[1.0.0-beta.6](https://github.com/vuejs/vitepress/pull/2626) Supported
+[metaChunk](https://github.com/vuejs/vitepress/pull/2626) option
+
+<br />
+
 ## README 🦉
 
 [简体中文](./README_CN.md) | English
